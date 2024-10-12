@@ -1,7 +1,13 @@
-# Comenzi de baza git
+# IMPORTANT!!!
 
-- git clone https://github.com/Miriapodel/Proiect-Jocuri-An-III.git    -> Cloneaza repo-ul in calculator
-- git add .    -> Se selecteaza toate fisierele din repo ca sa fie trimise pe git
-- git commit -m MESAJ    -> Se comit fisierele, puneti un mesaj cat mai sugestiv ca sa stim ce reprezinta fiecare versiune
-- git push -u origin main    -> Se trimit fisierele pe git. Doar prima data trebuie sa dati comanda asta full, dupa e destul sa dati git push
-- git pull  -> Cand vreti sa trageti schimbarile de pe git in calculator
+### Pentru a putea sa dam push usor, trebuie sa instalam GitHub Desktop ("https://desktop.github.com/download/")
+
+### Dupa ce instalati GitHub Desktop, in folder-ul in care vreti sa aveti proiectul dati comanda: git clone https://github.com/Miriapodel/Proiect-Jocuri-An-III.git 
+
+### In rest, tot se face din aplicatie:
+
+- Fetch, in dreapta sus, pentru a lua schimbarile de pe git
+
+- Commit, in care ar fi bine sa punem de fiecare data un mesaj sugestiv ca sa diferentiem versiunile
+
+- Push, dupa commit, ca modificarile sa fie trimise pe git
