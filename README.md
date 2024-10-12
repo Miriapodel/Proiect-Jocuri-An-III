@@ -1,10 +1,10 @@
 # IMPORTANT!!!
 
-*** Pentru a putea sa dam push usor, trebuie sa instalam GitHub Desktop ("https://desktop.github.com/download/") ***
+** Pentru a putea sa dam push usor, trebuie sa instalam GitHub Desktop ("https://desktop.github.com/download/") **
 
-*** Dupa ce instalati GitHub Desktop, in folder-ul in care vreti sa aveti proiectul dati comanda: git clone https://github.com/Miriapodel/Proiect-Jocuri-An-III.git ***
+** Dupa ce instalati GitHub Desktop, in folder-ul in care vreti sa aveti proiectul dati comanda: git clone https://github.com/Miriapodel/Proiect-Jocuri-An-III.git **
 
-*** In rest, tot se face din aplicatie: ***
+** In rest, tot se face din aplicatie: **
 
 - Fetch, in dreapta sus, pentru a lua schimbarile de pe git
 
