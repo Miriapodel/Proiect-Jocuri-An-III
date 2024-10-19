@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetScale = new Vector3(originalScale.x, halfHeight, originalScale.z);
 
         // Ajustam pozitia pe Y astfel incat jucatorul sa ramana la nivelul solului
-        Vector3 slideTargetPosition = new Vector3(originalPosition.x, originalPosition.y / 2, originalPosition.z);
+        Vector3 slideTargetPosition = new Vector3(originalPosition.x, originalPosition.y / 2f, originalPosition.z);
 
         // Timpul scurs pentru slide
         float elapsedTime = 0f;
