@@ -13,3 +13,7 @@
 - Commit, in care ar fi bine sa punem de fiecare data un mesaj sugestiv ca sa diferentiem versiunile
 
 - Push, dupa commit, ca modificarile sa fie trimise pe git
+
+**Cand lucrati pe branch-ul vostru, separat de main, rulati local comenzile:**
+- git fetch origin
+- git checkout "branch name"
