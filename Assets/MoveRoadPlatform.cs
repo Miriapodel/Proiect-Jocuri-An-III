@@ -22,6 +22,15 @@ public class MoveRoadPlatform : MonoBehaviour
         {
             // Dezactivez sectiunea de drum     --->     Parca asa a zis la curs ca vrea sa facem ca altfel o distrugeam :)))
             gameObject.SetActive(false);
+            
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("Obstacle"))
+                {
+                    child.parent = null;
+                    child.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }
