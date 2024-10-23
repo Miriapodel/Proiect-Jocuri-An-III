@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 51861997}
   - component: {fileID: 51862002}
   - component: {fileID: 51862003}
+  - component: {fileID: 51862004}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -288,6 +289,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadSection: {fileID: 5918950178341085016, guid: 3e739aa5fbf45a548baadc9c33c01231,
     type: 3}
+--- !u!114 &51862004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51861996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abfcb5a748eb1f49ac5b0a03d8f6af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraShake: {fileID: 0}
 --- !u!1 &225650315
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +432,7 @@ GameObject:
   - component: {fileID: 954080394}
   - component: {fileID: 954080393}
   - component: {fileID: 954080392}
+  - component: {fileID: 954080396}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -543,6 +558,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+--- !u!114 &954080396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954080391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3369ca7474b9a194b8277c096fcc381b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.5
+  shakeMagnitude: 0.1
 --- !u!1 &1267186231
 GameObject:
   m_ObjectHideFlags: 0
