@@ -13,13 +13,29 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping = false; // Flag pentru a verifica daca jucatorul sare
     private bool isSliding = false; // Flag pentru a verifica daca jucatorul face slide
     private bool isMoving = false; // Flag pentru a verifica daca exista vreo miscare in desfasurare
-    private float originalYScale; // Inaltimea originala a jucatorului
+
+    // Animator pentru animatii
+    private Animator animator;
+
+    // Referinta la CapsuleCollider
+    private CapsuleCollider capsuleCollider;
+    private float originalColliderHeight; // Inaltimea originala a collider-ului
+    private Vector3 originalColliderCenter; // Pozitia originala a centrului collider-ului
 
     void Start()
     {
         // Pozitia initiala
         targetPosition = transform.position;
-        originalYScale = transform.localScale.y; // Memoram inaltimea initiala a jucatorului
+
+        // Luam componenta Animator atasata la obiectul playerului
+        animator = GetComponent<Animator>();
+
+        // Luam referinta la CapsuleCollider
+        capsuleCollider = GetComponent<CapsuleCollider>();
+
+        // Salvam inaltimea si pozitia originala a collider-ului
+        originalColliderHeight = capsuleCollider.height;
+        originalColliderCenter = capsuleCollider.center;
     }
 
     void Update()
@@ -32,23 +48,27 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentLane--;
                 MoveToLane(); // Schimbam banda
+                animator.SetTrigger("RunLeft"); // Declanseaza animatia RunLeft
             }
             // Mutare pe banda din dreapta (D)
             else if (Input.GetKeyDown(KeyCode.D) && currentLane < 2)
             {
                 currentLane++;
                 MoveToLane(); // Schimbam banda
+                animator.SetTrigger("RunRight"); // Declanseaza animatia RunRight
             }
 
             // Saritura (W)
             if (Input.GetKeyDown(KeyCode.W) && !isJumping)
             {
+                animator.SetTrigger("JumpWhileRunning"); // Declanseaza animatia de saritura
                 StartCoroutine(Jump()); // Incepem saritura
             }
 
             // Slide (S)
             if (Input.GetKeyDown(KeyCode.S) && !isSliding)
             {
+                animator.SetTrigger("RollForward"); // Declanseaza animatia RollForward
                 StartCoroutine(Slide()); // Incepem slide-ul
             }
         }
@@ -67,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         targetPosition = new Vector3((currentLane - 1) * laneDistance, transform.position.y, transform.position.z);
 
         // Resetam flag-ul de miscare dupa un mic delay
-        StartCoroutine(ClearMovementFlagAfterDelay(0.2f)); // Ajusteaza delay-ul daca este necesar
+        StartCoroutine(ClearMovementFlagAfterDelay(0.3f)); // Ajusteaza delay-ul daca este necesar
     }
 
     // Coroutine pentru saritura
@@ -82,6 +102,10 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 startPos = transform.position;
         Vector3 jumpTarget = new Vector3(startPos.x, startPos.y + jumpHeight, startPos.z);
+
+        // Modificam collider-ul pentru saritura
+        capsuleCollider.height = originalColliderHeight; // Setam inaltimea originala
+        capsuleCollider.center = originalColliderCenter; // Setam pozitia originala a centrului
 
         // Realizam saritura in sus
         while (elapsedTime < jumpTime)
@@ -110,41 +134,16 @@ public class PlayerMovement : MonoBehaviour
         isSliding = true;  // Setam flag-ul de slide
         isMoving = true;   // Setam flag-ul de miscare
 
-        // Salvam inaltimea originala si scala jucatorului
-        float halfHeight = originalYScale / 2f;
-        Vector3 originalScale = transform.localScale;
-        Vector3 originalPosition = transform.position;
+        // Salvam original collider settings pentru revenirea dupa slide
+        capsuleCollider.height = 1f; // Reducem inaltimea collider-ului pentru slide
+        capsuleCollider.center = new Vector3(capsuleCollider.center.x, 0.5f, capsuleCollider.center.z); // Ajustam centrul collider-ului pentru a se potrivi cu slide-ul
 
-        // Reducem scala pe axa Y
-        Vector3 targetScale = new Vector3(originalScale.x, halfHeight, originalScale.z);
+        // Durata slide-ului
+        yield return new WaitForSeconds(slideDuration);
 
-        // Ajustam pozitia pe Y astfel incat jucatorul sa ramana la nivelul solului
-        Vector3 slideTargetPosition = new Vector3(originalPosition.x, originalPosition.y / 2f, originalPosition.z);
-
-        // Timpul scurs pentru slide
-        float elapsedTime = 0f;
-
-        // Reducerea dimensiunii jucatorului
-        while (elapsedTime < slideDuration / 2f)
-        {
-            transform.localScale = Vector3.Lerp(originalScale, targetScale, (elapsedTime / (slideDuration / 2f)));
-            transform.position = Vector3.Lerp(originalPosition, slideTargetPosition, (elapsedTime / (slideDuration / 2f)));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Pauza scurta in pozitia de slide
-        yield return new WaitForSeconds(slideDuration / 2f);
-
-        // Revenirea la dimensiunea si pozitia originala
-        elapsedTime = 0f;
-        while (elapsedTime < slideDuration / 2f)
-        {
-            transform.localScale = Vector3.Lerp(targetScale, originalScale, (elapsedTime / (slideDuration / 2f)));
-            transform.position = Vector3.Lerp(slideTargetPosition, originalPosition, (elapsedTime / (slideDuration / 2f)));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        // Revenim la setarile initiale ale collider-ului
+        capsuleCollider.height = originalColliderHeight;
+        capsuleCollider.center = originalColliderCenter;
 
         isSliding = false; // Resetam flag-ul de slide
         isMoving = false;  // Resetam flag-ul de miscare
