@@ -1,19 +1,19 @@
-# IMPORTANT!!!
+# Proiect Endless Runner - Documentație ReadMe
 
-**Pentru a putea sa dam push usor, trebuie sa instalam GitHub Desktop**
-- "https://desktop.github.com/download/"
+## Descriere Proiect
+Acesta este un joc de tip **endless runner**, inspirat de stilul popularizat de jocuri precum **Subway Surfers**. Scopul jucătorului este de a naviga pe o stradă infinită, evitând obstacole și adunând puncte. Harta este o stradă urbană cu clădiri și obstacole generate la infinit, creând o experiență de joc nesfârșită. Jucătorul poate controla caracterul folosind o serie de comenzi pentru a se deplasa, sări și aluneca.
 
-**Dupa ce instalati GitHub Desktop, in folder-ul in care vreti sa aveti proiectul dati comanda:**
-- git clone git@github.com:Miriapodel/Proiect-Jocuri-An-III.git
+## Comenzi
+- **W** - Salt
+- **S** - Alunecare/Rostogolire
+- **A** - Deplasare spre stânga
+- **D** - Deplasare spre dreapta
 
-**In rest, tot se face din aplicatie:**
+## Structura Proiectului
+- **readMe.md** - Acest fișier explicativ pentru proiect și instrucțiunile de feedback.
+- **/rapoarte/** - Folderul conține toate rapoartele de progres și modificările aduse jocului până în prezent.
 
-- Fetch, in dreapta sus, pentru a lua schimbarile de pe git
-
-- Commit, in care ar fi bine sa punem de fiecare data un mesaj sugestiv ca sa diferentiem versiunile
-
-- Push, dupa commit, ca modificarile sa fie trimise pe git
-
-**Cand lucrati pe branch-ul vostru, separat de main, rulati local comenzile:**
-- git fetch origin
-- git checkout "branch name"
+## Feedback
+Pentru echipa de recenzori, vă rugăm să ne trimiteți feedback-ul pe e-mail, la adresele: 
+- pavel-yanis.popescu@.unibuc.ro
+- vlad-serban.bobei@s.unibuc.ro
