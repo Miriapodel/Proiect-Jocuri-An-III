@@ -1,4 +1,4 @@
-# Proiect Endless Runner - Documentație ReadMe
+# Proiect Endless Runner
 
 ## Descriere Proiect
 Acesta este un joc de tip **endless runner**, inspirat de stilul popularizat de jocuri precum **Subway Surfers**. Scopul jucătorului este de a naviga pe o stradă infinită, evitând obstacole și adunând puncte. Harta este o stradă urbană cu clădiri și obstacole generate la infinit, creând o experiență de joc nesfârșită. Jucătorul poate controla caracterul folosind o serie de comenzi pentru a se deplasa, sări și aluneca.
