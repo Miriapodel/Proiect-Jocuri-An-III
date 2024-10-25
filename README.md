@@ -15,5 +15,5 @@ Acesta este un joc de tip **endless runner**, inspirat de stilul popularizat de 
 
 ## Feedback
 Pentru echipa de recenzori, vă rugăm să ne trimiteți feedback-ul pe e-mail, la adresele: 
-- pavel-yanis.popescu@.unibuc.ro
+- pavel-yanis.popescu@s.unibuc.ro
 - vlad-serban.bobei@s.unibuc.ro
