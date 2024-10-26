@@ -46,15 +46,13 @@ public class PlayerMovement : MonoBehaviour
             // Mutare pe banda din stanga (A)
             if (Input.GetKeyDown(KeyCode.A) && currentLane > 0)
             {
-                currentLane--;
-                MoveToLane(); // Schimbam banda
+                ChangeLane(-1);
                 animator.SetTrigger("RunLeft"); // Declanseaza animatia RunLeft
             }
             // Mutare pe banda din dreapta (D)
             else if (Input.GetKeyDown(KeyCode.D) && currentLane < 2)
             {
-                currentLane++;
-                MoveToLane(); // Schimbam banda
+                ChangeLane(1);
                 animator.SetTrigger("RunRight"); // Declanseaza animatia RunRight
             }
 
@@ -76,6 +74,20 @@ public class PlayerMovement : MonoBehaviour
         // Tranzitie smooth catre noua pozitie
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 10);
     }
+
+    public void ChangeLane(int direction)
+{
+    // direction poate fi -1 pentru stânga sau 1 pentru dreapta
+    int newLane = currentLane + direction;
+
+    // Verificăm limitele benzii (0 = stânga, 2 = dreapta)
+    if (newLane >= 0 && newLane <= 2)
+    {
+        currentLane = newLane;
+        MoveToLane();
+    }
+}
+
 
     // Functie pentru schimbarea benzii
     void MoveToLane()

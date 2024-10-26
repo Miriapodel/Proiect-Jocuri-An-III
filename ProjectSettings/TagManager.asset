@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trigger_for_NS
   - DeactivatePlatforms
+  - Obstacle
   layers:
   - Default
   - TransparentFX
