@@ -7,6 +7,9 @@ TagManager:
   - Trigger_for_NS
   - DeactivatePlatforms
   - Obstacle
+  - leftSide
+  - rightSide
+  - Life
   layers:
   - Default
   - TransparentFX
