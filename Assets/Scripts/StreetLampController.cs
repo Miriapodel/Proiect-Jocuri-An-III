@@ -5,7 +5,7 @@ using UnityEngine;
 public class StreetLampController : MonoBehaviour
 {
     private List<GameObject> streetLamps;
-    private readonly float intensityThreshold = 0.3f;
+    private readonly float intensityThreshold = 0.5f;
 
     private void Start()
     {

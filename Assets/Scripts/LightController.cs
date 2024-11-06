@@ -17,7 +17,7 @@ public class LightController : MonoBehaviour
             GameManager.Instance.sun = GameObject.FindWithTag("Sun")?.GetComponent<Light>();
 
             // Check if GameManager now has a sun reference
-            if (GameManager.Instance.sun != null)
+            if (GameManager.Instance.sun != null && GameManager.Instance.sunIntensity != 0 && GameManager.Instance.sunRotation != Quaternion.Euler(0, 0, 0))
             {
                 // Apply the stored intensity and rotation
                 GameManager.Instance.sun.intensity = GameManager.Instance.sunIntensity;
