@@ -10,6 +10,8 @@ TagManager:
   - leftSide
   - rightSide
   - Life
+  - Sun
+  - StreetLamp
   layers:
   - Default
   - TransparentFX
