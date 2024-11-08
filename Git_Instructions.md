@@ -17,3 +17,6 @@
 **Cand lucrati pe branch-ul vostru, separat de main, rulati local comenzile:**
 - git fetch origin
 - git checkout "branch name"
+
+
+*Pentru animatii folositi site-ul asta https://www.mixamo.com*
