@@ -92,12 +92,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9000000, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
+      objectReference: {fileID: 9000000, guid: c346a9e2503cda64ba4698db6aa5e707, type: 3}
     - target: {fileID: 4566390223753106929, guid: acd8c4148cf99584195b07aeb0585f26,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4ba911347dd347147b02756c736ad3d1, type: 2}
+      objectReference: {fileID: 9100000, guid: deba630be7cba7f4d8932aaeb2e92627, type: 2}
     - target: {fileID: 1065503320035269883, guid: d6dff2a314e7a1e4d87c2b7aba27a28f,
         type: 3}
       propertyPath: m_IsActive
