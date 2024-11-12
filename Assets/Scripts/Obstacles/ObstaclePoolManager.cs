@@ -7,7 +7,7 @@ public class ObstaclePooler : MonoBehaviour
 
     [SerializeField]
     private GameObject[] obstacolePrefabs;
-    private int poolSize = 15;
+    private readonly int poolSize = 15;
     private List<GameObject> obstacolePool = new List<GameObject>();
 
     void Awake()
