@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; } // Singleton instance
-    public Light sun; // Reference to the Sun (Directional Light)
-    public float sunIntensity = 1.0f;  // Stored intensity of the Sun
-    public Quaternion sunRotation = Quaternion.identity; // Stored rotation of the Sun
+    public static GameManager Instance { get; private set; } // Instanta Singleton
+    public Light sun; // Referinta la Soare (Lumina Directionala)
+    public float sunIntensity = 1.0f;  // Salveaza intensitatea Soarelui
+    public Quaternion sunRotation = Quaternion.identity; // Salveaza rotatia Soarelui
 
     private void Awake()
     {
-        // Ensure only one instance of GameManager exists
+        // Asigura ca exista doar o instanta a GameManager-ului
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -17,6 +17,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Persist GameManager across scenes
+        DontDestroyOnLoad(gameObject); // Persista GameManager-ul intre scene
     }
 }

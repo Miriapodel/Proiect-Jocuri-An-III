@@ -4,36 +4,36 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
-    public GameObject[] characters; // Array to hold character GameObjects in the StartMenu
-    private int selectedCharacter = 0; // Index of the currently selected character
+    public GameObject[] characters; // Vector pentru a stoca caracterele GameObject în StartMenu
+    private int selectedCharacter = 0; // Indexul caracterului selectat in acest moment
 
     public void NextCharacter()
     {
-        // Deactivate current character
+        // Dezactivarea caracterul curent
         characters[selectedCharacter].SetActive(false);
 
-        // Increment selectedCharacter index and loop if necessary
+        // Incrementarea indexului selectedCharacter si loop daca este necesar
         selectedCharacter = (selectedCharacter + 1) % characters.Length;
 
-        // Activate the new selected character
+        // Activarea noului caracter selectat
         characters[selectedCharacter].SetActive(true);
     }
 
     public void PreviousCharacter()
     {
-        // Deactivate current character
+        // Dezactivarea caracterul curent
         characters[selectedCharacter].SetActive(false);
 
-        // Decrement selectedCharacter index and loop if necessary
+        // Decrementarea indexului selectedCharacter si loop daca este necesar
         selectedCharacter = (selectedCharacter - 1 + characters.Length) % characters.Length;
 
-        // Activate the new selected character
+        // Activarea noului caracter selectat
         characters[selectedCharacter].SetActive(true);
     }
 
     public void SelectCharacter()
     {
-        // Save the selected character index
+        // Salvam indexul caracterului selectat in PlayerPrefs
         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
         Debug.Log("Selected character with the id " + selectedCharacter);
     }

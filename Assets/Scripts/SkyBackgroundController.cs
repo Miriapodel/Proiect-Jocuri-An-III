@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class SkyBackgroundController : MonoBehaviour
 {
-    public Material daySkybox;  // Skybox material for daytime
-    public Material duskSkybox; // Skybox material for dusk
-    public Material nightSkybox; // Skybox material for nighttime
+    public Material daySkybox;  // Material Skybox pentru day 
+    public Material duskSkybox; // Material Skybox pentru dusk
+    public Material nightSkybox; // Material Skybox pentru night
 
-    private Light sun; // Reference to the Sun light component
-    private float dayThreshold = 0.7f; // Intensity threshold for daytime
-    private float duskThreshold = 0.15f; // Intensity threshold for dusk
+    private Light sun; // Referinta la lumina soarelui
+    private readonly float dayThreshold = 0.7f; // Granita de intensitate pentru day
+    private readonly float duskThreshold = 0.15f; // Granita de intensitate pentru dusk
 
     private void Start()
     {
-        // Find the Sun object by tag
+        // Gaseste lumina soarelui in scena
         GameObject sunObject = GameObject.FindGameObjectWithTag("Sun");
         if (sunObject != null)
         {
@@ -34,24 +34,24 @@ public class SkyBackgroundController : MonoBehaviour
 
     private void UpdateSkyboxBasedOnIntensity(float intensity)
     {
-        // Change the skybox material based on the sun's intensity
+        // Schimba skybox-ul in functie de intensitatea soarelui
         if (intensity > dayThreshold)
         {
-            // Set daytime skybox
+            // Seteaza skybox-ul pentru day
             RenderSettings.skybox = daySkybox;
         }
         else if (intensity > duskThreshold)
         {
-            // Set dusk skybox
+            // Seteaza skybox-ul pentru dusk
             RenderSettings.skybox = duskSkybox;
         }
         else
         {
-            // Set nighttime skybox
+            // Seteaza skybox-ul pentru night
             RenderSettings.skybox = nightSkybox;
         }
 
-        // Optional: Update lighting when the skybox changes
+        // Actualizeaza lumina ambientala pentru a se potrivi cu skybox-ul
         DynamicGI.UpdateEnvironment();
     }
 }

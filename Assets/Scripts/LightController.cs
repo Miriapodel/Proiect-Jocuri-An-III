@@ -4,22 +4,22 @@ public class LightController : MonoBehaviour
 {
     private void Start()
     {
-        // Check if GameManager exists and has a sun reference
+        // Verifica daca GameManager exista si daca GameManager are o referinta la soare
         if (GameManager.Instance != null && GameManager.Instance.sun != null)
         {
-            // Apply the stored intensity and rotation from GameManager
+            // Aplica intensitatea si rotatia stocate
             GameManager.Instance.sun.intensity = GameManager.Instance.sunIntensity;
             GameManager.Instance.sun.transform.rotation = GameManager.Instance.sunRotation;
         }
         else if (GameManager.Instance != null)
         {
-            // Find the Sun in MainScene by name or tag and assign it to GameManager
+            // Gaseste soarele si seteaza referinta GameManager-ului
             GameManager.Instance.sun = GameObject.FindWithTag("Sun")?.GetComponent<Light>();
 
-            // Check if GameManager now has a sun reference
+            // Verifica daca GameManager are o referinta la soare
             if (GameManager.Instance.sun != null && GameManager.Instance.sunIntensity != 0 && GameManager.Instance.sunRotation != Quaternion.Euler(0, 0, 0))
             {
-                // Apply the stored intensity and rotation
+                // Aplica intensitatea si rotatia stocate
                 GameManager.Instance.sun.intensity = GameManager.Instance.sunIntensity;
                 GameManager.Instance.sun.transform.rotation = GameManager.Instance.sunRotation;
             }

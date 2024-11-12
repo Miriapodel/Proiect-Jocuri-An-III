@@ -7,21 +7,21 @@ public class SectionTrigger : MonoBehaviour
     [SerializeField]
     private GameObject roadSection;
 
-    private bool hasSpawned = false; // Flag to prevent multiple instantiations
+    private bool hasSpawned = false; // Flag pentru a verifica daca am spawnat deja sectiunea
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider has the correct tag and if we haven't spawned the section yet
+        // Verifica daca jucatorul a intrat in trigger si daca nu am spawnat deja sectiunea
         if (other.gameObject.CompareTag("Trigger_for_NS") && !hasSpawned)
         {
             Instantiate(roadSection, new Vector3(0, 0, 128), Quaternion.identity);
-            hasSpawned = true; // Set the flag to prevent further spawns
+            hasSpawned = true; // Seteaza flag-ul ca am spawnat sectiunea
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Reset the flag when the player exits the trigger area
+        // Resetam flag-ul daca jucatorul a iesit din trigger
         if (other.gameObject.CompareTag("Trigger_for_NS"))
         {
             hasSpawned = false;

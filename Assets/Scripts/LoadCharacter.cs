@@ -3,37 +3,37 @@ using TMPro;
 
 public class LoadCharacter : MonoBehaviour
 {
-    public GameObject[] characterPrefabs; // Array of character prefabs to instantiate from
-    public Transform spawnPoint;          // The point where the character will be instantiated
+    public GameObject[] characterPrefabs; // Array cu caractere de tip prefab cu care vom lucra
+    public Transform spawnPoint;          // Spawnpoint pentru caracter
     public TMP_Text label;                // Optional - Daca vom da nume in viitor jucatorilor
 
     void Start()
     {
-        // Get the saved character index from PlayerPrefs, default to 0 if none exists
+        // Luam indexul caracterului salvat din PlayerPrefs, daca nu exista, default la 0
         int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter", 0);
         Debug.Log("Loaded character id " + selectedCharacter);
 
-        // Ensure the selectedCharacter index is within bounds
+        // Ne asiguram ca indexul selectat este in limite
         if (selectedCharacter >= 0 && selectedCharacter < characterPrefabs.Length)
         {
-            // Instantiate the selected character prefab at the spawn point
+            // Instantiem caracterul selectat la spawnpoint
             GameObject prefab = characterPrefabs[selectedCharacter];
             GameObject clone = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
             clone.transform.localScale = Vector3.one; // Reset scale to (1, 1, 1)
 
-            // Force the root GameObject to be active
+            // Fortam GameObject root sa fie activ
             clone.SetActive(true);
 
-            // Ensure all Renderer components are enabled
+            // Ne asiguram ca toate componentele Renderer sunt activate
             EnableRenderers(clone);
 
-            // Optional - Set the label to the character's name if label is not null
+            // Optional - Setam numele caracterului in interfata (daca exista)
             if (label != null)
             {
                 label.text = prefab.name;
             }
 
-            // Assign Life Objects, if necessary
+            // Assignam LifeObjects la caracter
             AssignLifeObjects(clone);
         }
         else
@@ -44,7 +44,7 @@ public class LoadCharacter : MonoBehaviour
 
     void EnableRenderers(GameObject character)
     {
-        // Enable all MeshRenderer and SkinnedMeshRenderer components
+        // Activeaza toate componentele MeshRenderer si SkinnedMeshRenderer
         var meshRenderers = character.GetComponentsInChildren<MeshRenderer>();
         var skinnedMeshRenderers = character.GetComponentsInChildren<SkinnedMeshRenderer>();
 
@@ -61,13 +61,13 @@ public class LoadCharacter : MonoBehaviour
 
     void AssignLifeObjects(GameObject character)
     {
-        // Assuming Life Objects are named "Life1", "Life2", "Life3" in the scene
+        // Asumand ca obiectele de viata sunt numite "Life1", "Life2", "Life3" in scena
         GameObject life1 = GameObject.Find("Life1");
         GameObject life2 = GameObject.Find("Life2");
         GameObject life3 = GameObject.Find("Life3");
 
-        // Assuming the character has a component that contains the LifeObjects array
-        var characterScript = character.GetComponent<CollisionWithObstacles>(); // Replace with actual script name if different
+        // Asumand ca caracterul are un component care contine array-ul LifeObjects
+        var characterScript = character.GetComponent<CollisionWithObstacles>();
         if (characterScript != null)
         {
             characterScript.lifeObjects = new GameObject[] { life1, life2, life3 };

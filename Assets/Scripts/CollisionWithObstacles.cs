@@ -9,32 +9,54 @@ public class CollisionWithObstacles : MonoBehaviour
     public int lives = 3; // Numarul de vieti
     public GameObject[] lifeObjects; // Obiectele de viață în scenă
 
+    private bool recentlyDamaged = false; // Flag pentru a verifica dacă jucătorul a fost recent lovit
+    public float damageCooldown = 0.5f; // Durata cooldown-ului pentru damage
+
     void Start()
     {
         // Obține referința la CameraShake
         cameraShake = Camera.main.GetComponent<CameraShake>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        // Initializează UI - ul de vieți
+        // Initializează UI-ul de vieți
         UpdateLivesUI();
     }
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        // Verifică dacă jucătorul a intrat în coliziune cu un obstacol și nu a fost recent lovit
+        if (collision.gameObject.CompareTag("Obstacle") && !recentlyDamaged)
         {
-            // Reduce o viață
-            lives--;
-            UpdateLivesUI();
+            // Calculează direcția coliziunii pentru a determina dacă este frontală
+            Vector3 directionToObstacle = (collision.transform.position - transform.position).normalized;
+            float dotProduct = Vector3.Dot(transform.forward, directionToObstacle);
 
-            // Pornim efectul de camera shake
-            cameraShake.TriggerShake();
-
-            // Verifică dacă jucătorul a rămas fără vieți
-            if (lives <= 0)
+            if (dotProduct > 0.99f) // Aproximativ frontal (1.0 ar fi direct frontal)
             {
-                //Game Over
+                // Coliziune frontală - pierde toate viețile
+                lives = 0;
+                UpdateLivesUI();
                 Debug.Log("Game Over!");
+
+                // Pornim efectul de camera shake mai intens
+                cameraShake.TriggerShake();
+            }
+            else
+            {
+                // Coliziune laterală - pierde o viață
+                StartCoroutine(HandleDamage()); // Pornește coroutine pentru a aplica cooldown
+
+                lives--;
+                UpdateLivesUI();
+
+                // Pornim efectul de camera shake
+                cameraShake.TriggerShake();
+
+                // Verifică dacă jucătorul a rămas fără vieți
+                if (lives <= 0)
+                {
+                    Debug.Log("Game Over!");
+                }
             }
         }
         if (collision.CompareTag("leftSide"))
@@ -45,6 +67,13 @@ public class CollisionWithObstacles : MonoBehaviour
         {
             playerMovement.ChangeLane(1);
         }
+    }
+
+    IEnumerator HandleDamage()
+    {
+        recentlyDamaged = true; // Setează flag-ul pentru a evita damage-ul dublu
+        yield return new WaitForSeconds(damageCooldown); // Așteaptă durata cooldown-ului
+        recentlyDamaged = false; // Resetează flag-ul după cooldown
     }
 
     void UpdateLivesUI()
