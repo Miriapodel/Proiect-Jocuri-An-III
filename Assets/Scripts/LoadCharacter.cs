@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 
 public class LoadCharacter : MonoBehaviour
 {
@@ -61,21 +63,31 @@ public class LoadCharacter : MonoBehaviour
 
     void AssignLifeObjects(GameObject character)
     {
-        // Asumand ca obiectele de viata sunt numite "Life1", "Life2", "Life3" in scena
-        GameObject life1 = GameObject.Find("Life1");
-        GameObject life2 = GameObject.Find("Life2");
-        GameObject life3 = GameObject.Find("Life3");
 
-        // Asumand ca caracterul are un component care contine array-ul LifeObjects
-        var characterScript = character.GetComponent<CollisionWithObstacles>();
-        if (characterScript != null)
+        Image life1 = GameObject.Find("life1").GetComponent<Image>();
+        Image life2 = GameObject.Find("life2").GetComponent<Image>();
+        Image life3 = GameObject.Find("life3").GetComponent<Image>();
+
+        // Verificam daca componentele Image au fost gasite
+        if (life1 != null && life2 != null && life3 != null)
         {
-            characterScript.lifeObjects = new GameObject[] { life1, life2, life3 };
-            Debug.Log("LifeObjects assigned to character.");
+            var characterScript = character.GetComponent<CollisionWithObstacles>();
+
+            if (characterScript != null)
+            {
+                // Asignam iconitele de viata
+                characterScript.lifeIcons = new Image[] { life1, life2, life3 };
+                Debug.Log("LifeIcons assigned to character.");
+            }
+            else
+            {
+                Debug.LogWarning("CharacterScript not found on the instantiated player.");
+            }
         }
         else
         {
-            Debug.LogWarning("CharacterScript not found on the instantiated player.");
+            Debug.LogError("Life images not found in the scene. Please ensure life1, life2, and life3 are present.");
         }
     }
+
 }
