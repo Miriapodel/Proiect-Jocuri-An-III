@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollisionWithObstacles : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class CollisionWithObstacles : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public int lives = 3; // Numarul de vieti
-    public GameObject[] lifeObjects; // Obiectele de viață în scenă
+    public Image[] lifeIcons; // Imaginile de overlay pentru vieți
 
     private bool recentlyDamaged = false; // Flag pentru a verifica dacă jucătorul a fost recent lovit
     public float damageCooldown = 0.5f; // Durata cooldown-ului pentru damage
@@ -78,10 +79,10 @@ public class CollisionWithObstacles : MonoBehaviour
 
     void UpdateLivesUI()
     {
-        for (int i = 0; i < lifeObjects.Length; i++)
+        // Activează sau dezactivează imaginile de viață în funcție de numărul de vieți rămase
+        for (int i = 0; i < lifeIcons.Length; i++)
         {
-            // Activează sau dezactivează obiectele de viață în funcție de numărul de vieți rămase
-            lifeObjects[i].SetActive(i < lives);
+            lifeIcons[i].enabled = (i < lives); // Activează imaginea dacă jucătorul are viața respectivă
         }
     }
 }
