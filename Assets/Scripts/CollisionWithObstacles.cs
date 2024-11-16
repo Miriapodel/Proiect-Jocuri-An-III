@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CollisionWithObstacles : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class CollisionWithObstacles : MonoBehaviour
                 lives = 0;
                 UpdateLivesUI();
                 Debug.Log("Game Over!");
+                SceneManager.LoadScene("GameOver");
+
 
                 // Pornim efectul de camera shake mai intens
                 cameraShake.TriggerShake();
@@ -57,6 +60,7 @@ public class CollisionWithObstacles : MonoBehaviour
                 if (lives <= 0)
                 {
                     Debug.Log("Game Over!");
+                    SceneManager.LoadScene("GameOver");
                 }
             }
         }
