@@ -12,6 +12,8 @@ TagManager:
   - Life
   - Sun
   - StreetLamp
+  - Bomb
+  - ObstacleMainComponent
   layers:
   - Default
   - TransparentFX

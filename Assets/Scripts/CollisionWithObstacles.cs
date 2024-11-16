@@ -8,11 +8,15 @@ public class CollisionWithObstacles : MonoBehaviour
     public CameraShake cameraShake; // Referință la CameraShake
     public PlayerMovement playerMovement;
 
-    public int lives = 3; // Numarul de vieti
+    public int lives = 3; // Numarul de vieți
     public Image[] lifeIcons; // Imaginile de overlay pentru vieți
 
     private bool recentlyDamaged = false; // Flag pentru a verifica dacă jucătorul a fost recent lovit
     public float damageCooldown = 0.5f; // Durata cooldown-ului pentru damage
+
+    private bool hasDisableObstaclesPowerUp = false; // Flag pentru activarea puterii
+    private Coroutine powerUpCoroutine; // Referință la corutina activă
+    public float powerUpDuration = 5f; // Durata efectului power-up-ului
 
     void Start()
     {
@@ -27,7 +31,7 @@ public class CollisionWithObstacles : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         // Verifică dacă jucătorul a intrat în coliziune cu un obstacol și nu a fost recent lovit
-        if (collision.gameObject.CompareTag("Obstacle") && !recentlyDamaged)
+        if (collision.gameObject.CompareTag("Obstacle") && !recentlyDamaged && !hasDisableObstaclesPowerUp)
         {
             // Calculează direcția coliziunii pentru a determina dacă este frontală
             Vector3 directionToObstacle = (collision.transform.position - transform.position).normalized;
@@ -40,7 +44,6 @@ public class CollisionWithObstacles : MonoBehaviour
                 UpdateLivesUI();
                 Debug.Log("Game Over!");
                 SceneManager.LoadScene("GameOver");
-
 
                 // Pornim efectul de camera shake mai intens
                 cameraShake.TriggerShake();
@@ -64,6 +67,20 @@ public class CollisionWithObstacles : MonoBehaviour
                 }
             }
         }
+        if (collision.gameObject.CompareTag("Obstacle") && !recentlyDamaged && hasDisableObstaclesPowerUp)
+        {
+            // Dezactivează obstacolul părinte
+            Transform parent = collision.transform.parent;
+
+            if (parent != null && parent.CompareTag("ObstacleMainComponent")) // Verifică tag-ul părintelui
+            {
+                parent.gameObject.SetActive(false); // Dezactivează întregul părinte
+            }
+            else
+            {
+                collision.gameObject.SetActive(false);
+            }
+        }
         if (collision.CompareTag("leftSide"))
         {
             playerMovement.ChangeLane(-1);
@@ -72,6 +89,28 @@ public class CollisionWithObstacles : MonoBehaviour
         {
             playerMovement.ChangeLane(1);
         }
+        if (collision.CompareTag("Bomb"))
+        {
+            if (!hasDisableObstaclesPowerUp) // Verifică dacă efectul nu este deja activ
+            {
+                collision.gameObject.SetActive(false); // Dezactivează bomba
+                hasDisableObstaclesPowerUp = true; // Activează efectul power-up-ului
+                powerUpCoroutine = StartCoroutine(DisablePowerUpAfterTime()); // Pornește durata power-up-ului
+            }
+            else
+            {
+                Debug.Log("Power-up-ul este deja activ!");
+            }
+        }
+    }
+
+    private IEnumerator DisablePowerUpAfterTime()
+    {
+        Debug.Log("Efectul power-up-ului activat!");
+        yield return new WaitForSeconds(powerUpDuration); // Așteaptă durata efectului
+        hasDisableObstaclesPowerUp = false; // Dezactivează efectul
+        powerUpCoroutine = null; // Resetează referința corutinei
+        Debug.Log("Efectul power-up-ului a expirat!");
     }
 
     IEnumerator HandleDamage()
