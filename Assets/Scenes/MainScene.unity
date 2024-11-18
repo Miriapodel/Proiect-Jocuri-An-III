@@ -879,6 +879,7 @@ MonoBehaviour:
   lives: 3
   lifeIcons: []
   damageCooldown: 0.5
+  powerUpDuration: 5
 --- !u!114 &645519154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1625,6 +1626,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3628807026519247675, guid: 3e739aa5fbf45a548baadc9c33c01231,
+        type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a,
+        type: 3}
     - target: {fileID: 5141489518070419667, guid: 3e739aa5fbf45a548baadc9c33c01231,
         type: 3}
       propertyPath: m_LocalPosition.x
