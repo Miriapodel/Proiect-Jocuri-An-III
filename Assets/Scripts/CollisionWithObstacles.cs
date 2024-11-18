@@ -17,6 +17,7 @@ public class CollisionWithObstacles : MonoBehaviour
     private bool hasDisableObstaclesPowerUp = false; // Flag pentru activarea puterii
     private Coroutine powerUpCoroutine; // Referință la corutina activă
     public float powerUpDuration = 5f; // Durata efectului power-up-ului
+    private int nrCoin = 0;
 
     void Start()
     {
@@ -101,6 +102,13 @@ public class CollisionWithObstacles : MonoBehaviour
             {
                 Debug.Log("Power-up-ul este deja activ!");
             }
+        }
+
+        if( collision.CompareTag("Coin"))
+        {
+            collision.gameObject.SetActive(false);
+            nrCoin += 1;
+            Debug.Log("Nr coins: " + nrCoin);
         }
     }
 

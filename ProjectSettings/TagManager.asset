@@ -14,6 +14,8 @@ TagManager:
   - StreetLamp
   - Bomb
   - ObstacleMainComponent
+  - CoinSpawn
+  - Coin
   layers:
   - Default
   - TransparentFX
