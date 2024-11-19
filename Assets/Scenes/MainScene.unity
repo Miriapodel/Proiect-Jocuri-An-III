@@ -1626,12 +1626,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3628807026519247675, guid: 3e739aa5fbf45a548baadc9c33c01231,
-        type: 3}
-      propertyPath: coinPrefab
-      value: 
-      objectReference: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a,
-        type: 3}
     - target: {fileID: 5141489518070419667, guid: 3e739aa5fbf45a548baadc9c33c01231,
         type: 3}
       propertyPath: m_LocalPosition.x
