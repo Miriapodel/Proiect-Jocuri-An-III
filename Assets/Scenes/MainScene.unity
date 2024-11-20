@@ -876,6 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraShake: {fileID: 0}
   playerMovement: {fileID: 0}
+  gameOverSound: {fileID: 8300000, guid: bcef6b6a78bea3f4297a2a9b99f042a5, type: 3}
   lives: 3
   lifeIcons: []
   damageCooldown: 0.5
@@ -1051,6 +1052,7 @@ GameObject:
   - component: {fileID: 954080393}
   - component: {fileID: 954080392}
   - component: {fileID: 954080396}
+  - component: {fileID: 954080397}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1190,6 +1192,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeDuration: 0.5
   shakeMagnitude: 0.1
+--- !u!114 &954080397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954080391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32f8c1e2a1ae60448749fc61e563848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1267186231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,12 +1640,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3628807026519247675, guid: 3e739aa5fbf45a548baadc9c33c01231,
-        type: 3}
-      propertyPath: coinPrefab
-      value: 
-      objectReference: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a,
-        type: 3}
     - target: {fileID: 5141489518070419667, guid: 3e739aa5fbf45a548baadc9c33c01231,
         type: 3}
       propertyPath: m_LocalPosition.x
