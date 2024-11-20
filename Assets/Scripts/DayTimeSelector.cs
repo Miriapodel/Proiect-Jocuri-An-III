@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DayTimeSelector : MonoBehaviour
 {
@@ -6,48 +6,43 @@ public class DayTimeSelector : MonoBehaviour
     private Quaternion rotatieAPUS = Quaternion.Euler(5.869f, -177.649f, -156.419f);
     private Quaternion rotatieNOAPTE = Quaternion.Euler(-10f, 180f, 0f);
 
+    public AudioClip dayAudio; // Referință la clipul audio pentru zi
+    public AudioClip duskAudio; // Referință la clipul audio pentru apus
+    public AudioClip nightAudio; // Referință la clipul audio pentru noapte
+
     public void DayTime()
     {
-        Debug.Log("Setting Day Sun Intensity and Rotation");
-        if (GameManager.Instance != null && GameManager.Instance.sun != null)
+        if (GameManager.Instance != null) // Verifică dacă GameManager există
         {
-            GameManager.Instance.sun.intensity = 1.0f;
-            GameManager.Instance.sunIntensity = 1.0f;  // Salveaza valoarea intensitatii in GameManager
+            GameManager.Instance.sunIntensity = 1.0f; // Intensitatea soarelui
+            GameManager.Instance.sunRotation = rotatieZI; // Rotația soarelui
+            GameManager.Instance.currentAudioClip = dayAudio; // Clipul audio pentru zi
 
-            // Seteaza rotatia pentru day
-            Quaternion dayRotation = rotatieZI;
-            GameManager.Instance.sun.transform.rotation = dayRotation;
-            GameManager.Instance.sunRotation = dayRotation;  // Salveaza rotatia in GameManager
+            Debug.Log("Setare intensitate de zi, rotatie de zi si clip audio pentru zi");
         }
     }
 
     public void DuskTime()
     {
-        Debug.Log("Setting Dusk Sun Intensity and Rotation");
-        if (GameManager.Instance != null && GameManager.Instance.sun != null)
+        if (GameManager.Instance != null) // Verifică dacă GameManager există
         {
-            GameManager.Instance.sun.intensity = 0.35f;
-            GameManager.Instance.sunIntensity = 0.35f;  // Salveaza valoarea intensitatii in GameManager
+            GameManager.Instance.sunIntensity = 0.35f; // Intensitatea soarelui
+            GameManager.Instance.sunRotation = rotatieAPUS; // Rotația soarelui
+            GameManager.Instance.currentAudioClip = duskAudio; // Clipul audio pentru apus
 
-            // Seteaza rotatia pentru dusk
-            Quaternion duskRotation = rotatieAPUS;
-            GameManager.Instance.sun.transform.rotation = duskRotation;
-            GameManager.Instance.sunRotation = duskRotation;  // Salveaza rotatia in GameManager
+            Debug.Log("Setare intensitate de apus, rotatie de apus si clip audio pentru apus");
         }
     }
 
     public void NightTime()
     {
-        Debug.Log("Setting Night Sun Intensity and Rotation");
-        if (GameManager.Instance != null && GameManager.Instance.sun != null)
+        if (GameManager.Instance != null) // Verifică dacă GameManager există
         {
-            GameManager.Instance.sun.intensity = 0.0001f;
-            GameManager.Instance.sunIntensity = 0.0001f;  // Salveaza valoarea intensitatii in GameManager
+            GameManager.Instance.sunIntensity = 0.0001f; // Intensitatea soarelui
+            GameManager.Instance.sunRotation = rotatieNOAPTE; // Rotația soarelui
+            GameManager.Instance.currentAudioClip = nightAudio; // Clipul audio pentru noapte
 
-            // Seteaza rotatia pentru night
-            Quaternion nightRotation = rotatieNOAPTE;
-            GameManager.Instance.sun.transform.rotation = nightRotation;
-            GameManager.Instance.sunRotation = nightRotation;  // Salveaza rotatia in GameManager
+            Debug.Log("Setare intensitate de noapte, rotatie de noapte si clip audio pentru noapte");
         }
     }
 }
