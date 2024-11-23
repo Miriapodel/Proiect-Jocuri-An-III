@@ -14,7 +14,7 @@ public class SectionTrigger : MonoBehaviour
         // Verifica daca jucatorul a intrat in trigger si daca nu am spawnat deja sectiunea
         if (other.gameObject.CompareTag("Trigger_for_NS") && !hasSpawned)
         {
-            Instantiate(roadSection, new Vector3(0, 0, 130.5f), Quaternion.identity);
+            Instantiate(roadSection, new Vector3(0, 0, 130), Quaternion.identity);
             hasSpawned = true; // Seteaza flag-ul ca am spawnat sectiunea
         }
     }
