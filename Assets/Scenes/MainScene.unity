@@ -375,7 +375,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1034,6 +1034,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519bac28eeee0534ba339c27d019f0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialRoadSpeed: 20
+  maxRoadSpeed: 50
+  roadSpeedIncreaseRate: 5
 --- !u!4 &762125935
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,15 @@ public class SectionTrigger : MonoBehaviour
         // Verifica daca jucatorul a intrat in trigger si daca nu am spawnat deja sectiunea
         if (other.gameObject.CompareTag("Trigger_for_NS") && !hasSpawned)
         {
-            Instantiate(roadSection, new Vector3(0, 0, 130), Quaternion.identity);
+            // Luam toate obiectele cu tag-ul "Road" si alegem pe ultima
+            roadSection = GameObject.FindGameObjectsWithTag("Road")[^1];
+
+            // Calculam coordonatele sectiunii curente a drumului
+            Vector3 currentSectionPosition = roadSection.transform.position;
+
+            // Instantiem o noua sectiune de drum la coordonatele sectiunii curente
+            Instantiate(roadSection, new Vector3(currentSectionPosition.x, currentSectionPosition.y, currentSectionPosition.z + 100), Quaternion.identity);
+
             hasSpawned = true; // Seteaza flag-ul ca am spawnat sectiunea
         }
     }
