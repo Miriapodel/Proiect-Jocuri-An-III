@@ -375,7 +375,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1005,6 +1005,53 @@ Transform:
   - {fileID: 1345284463}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &762125933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 762125935}
+  - component: {fileID: 762125934}
+  m_Layer: 0
+  m_Name: GameProgression
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &762125934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762125933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519bac28eeee0534ba339c27d019f0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialRoadSpeed: 20
+  maxRoadSpeed: 50
+  roadSpeedIncreaseRate: 5
+--- !u!4 &762125935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762125933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.708339, y: -5.2582703, z: 18.421104}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786424176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1098,7 @@ GameObject:
   - component: {fileID: 954080393}
   - component: {fileID: 954080392}
   - component: {fileID: 954080396}
+  - component: {fileID: 954080397}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1190,6 +1238,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeDuration: 0.5
   shakeMagnitude: 0.1
+--- !u!114 &954080397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954080391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32f8c1e2a1ae60448749fc61e563848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1267186231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,12 +1686,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3628807026519247675, guid: 3e739aa5fbf45a548baadc9c33c01231,
-        type: 3}
-      propertyPath: coinPrefab
-      value: 
-      objectReference: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a,
-        type: 3}
     - target: {fileID: 5141489518070419667, guid: 3e739aa5fbf45a548baadc9c33c01231,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1687,7 +1741,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_Section
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1441614321239371505, guid: 3e739aa5fbf45a548baadc9c33c01231, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1707,3 +1762,4 @@ SceneRoots:
   - {fileID: 759213364}
   - {fileID: 239239432}
   - {fileID: 234213393}
+  - {fileID: 762125935}

@@ -53,10 +53,10 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Centre_Gaps_Amount: 15
+    - _Centre_Gaps_Amount: 10
     - _Centre_Noise_Amount: 0
     - _Centre_Normal_Height: 58.8
-    - _Centre_Roughness: 0.955
+    - _Centre_Roughness: 0
     - _Centre_Width: 0.1
     - _Edge_Gap: 0.05
     - _Edge_Noise_Amount: 0

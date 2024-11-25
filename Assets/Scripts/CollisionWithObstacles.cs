@@ -7,7 +7,6 @@ public class CollisionWithObstacles : MonoBehaviour
 {
     public CameraShake cameraShake; // Referință la CameraShake
     public PlayerMovement playerMovement;
-
     public int lives = 3; // Numarul de vieți
     public Image[] lifeIcons; // Imaginile de overlay pentru vieți
 
@@ -104,7 +103,7 @@ public class CollisionWithObstacles : MonoBehaviour
             }
         }
 
-        if( collision.CompareTag("Coin"))
+        if (collision.CompareTag("Coin"))
         {
             collision.gameObject.SetActive(false);
             nrCoin += 1;

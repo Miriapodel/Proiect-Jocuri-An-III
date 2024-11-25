@@ -16,6 +16,9 @@ TagManager:
   - ObstacleMainComponent
   - CoinSpawn
   - Coin
+  - MenuCamera
+  - GameOverCamera
+  - Road
   layers:
   - Default
   - TransparentFX

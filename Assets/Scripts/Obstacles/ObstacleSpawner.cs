@@ -4,7 +4,7 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField]
     private Transform[] puncteSpawn;
-    private float sansaAparitie = 50f;
+    public static float sansaAparitie = 50f;
 
     void Start()
     {

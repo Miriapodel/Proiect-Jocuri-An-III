@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveRoadPlatform : MonoBehaviour
 {
+    public static float roadSpeed = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +15,7 @@ public class MoveRoadPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, 0, -20) * Time.deltaTime;
+        transform.position += new Vector3(0, 0, -roadSpeed) * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

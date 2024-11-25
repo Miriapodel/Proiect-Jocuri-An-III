@@ -4,7 +4,7 @@ public class PowerUpSpawner : MonoBehaviour
 {
     [SerializeField]
     private Transform[] puncteSpawn; // Punctele de spawn definite prin empty GameObjects
-    private float sansaAparitie = 50f; // Șansa ca un power-up să apară la fiecare punct
+    public static float sansaAparitie = 50f; // Șansa ca un power-up să apară la fiecare punct
 
     void Start()
     {
