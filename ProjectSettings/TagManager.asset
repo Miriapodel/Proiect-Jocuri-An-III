@@ -19,6 +19,7 @@ TagManager:
   - MenuCamera
   - GameOverCamera
   - Road
+  - displayCoins
   layers:
   - Default
   - TransparentFX

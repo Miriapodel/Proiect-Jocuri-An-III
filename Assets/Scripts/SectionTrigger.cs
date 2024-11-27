@@ -15,11 +15,11 @@ public class SectionTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Trigger_for_NS") && !hasSpawned)
         {
             // Luam toate obiectele cu tag-ul "Road" si alegem pe ultima
-            roadSection = GameObject.FindGameObjectsWithTag("Road")[^1];
+            GameObject[] roads = GameObject.FindGameObjectsWithTag("Road");
+            GameObject lastRoad = roads[roads.Length - 1];
 
             // Calculam coordonatele sectiunii curente a drumului
-            Vector3 currentSectionPosition = roadSection.transform.position;
-
+            Vector3 currentSectionPosition = lastRoad.transform.position;
             // Instantiem o noua sectiune de drum la coordonatele sectiunii curente
             Instantiate(roadSection, new Vector3(currentSectionPosition.x, currentSectionPosition.y, currentSectionPosition.z + 100), Quaternion.identity);
 

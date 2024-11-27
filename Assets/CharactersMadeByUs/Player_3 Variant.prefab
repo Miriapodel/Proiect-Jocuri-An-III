@@ -199,10 +199,13 @@ MonoBehaviour:
   cameraShake: {fileID: 0}
   playerMovement: {fileID: 0}
   lives: 3
-  lifeObjects:
+  lifeIcons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  damageCooldown: 0.5
+  powerUpDuration: 5
+  coinsText: {fileID: 0}
 --- !u!114 &7725537727494653562
 MonoBehaviour:
   m_ObjectHideFlags: 0

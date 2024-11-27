@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CollisionWithObstacles : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class CollisionWithObstacles : MonoBehaviour
     public float powerUpDuration = 5f; // Durata efectului power-up-ului
     private int nrCoin = 0;
 
+    
+    [SerializeField]
+    private TextMeshProUGUI coinsText; 
+
+
     void Start()
     {
         // Obține referința la CameraShake
@@ -26,6 +32,10 @@ public class CollisionWithObstacles : MonoBehaviour
 
         // Initializează UI-ul de vieți
         UpdateLivesUI();
+
+        // Încarcă numărul total de monede colectate
+        nrCoin = PlayerPrefs.GetInt("TotalCoins", 0);
+        UpdateCoinsUI();
     }
 
     void OnTriggerEnter(Collider collision)
@@ -55,6 +65,7 @@ public class CollisionWithObstacles : MonoBehaviour
 
                 lives--;
                 UpdateLivesUI();
+                
 
                 // Pornim efectul de camera shake
                 cameraShake.TriggerShake();
@@ -107,7 +118,17 @@ public class CollisionWithObstacles : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             nrCoin += 1;
+
+            // Actualizează numărul total de monede colectate
+            int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0); // Citește valoarea curentă
+            totalCoins += 1; // Adaugă moneda colectată
+            PlayerPrefs.SetInt("TotalCoins", totalCoins); // Salvează în PlayerPrefs
+            PlayerPrefs.Save(); // Salvează imediat pe disc
+
             Debug.Log("Nr coins: " + nrCoin);
+
+            // Actualizează UI-ul monedelor
+            UpdateCoinsUI();
         }
     }
 
@@ -135,4 +156,9 @@ public class CollisionWithObstacles : MonoBehaviour
             lifeIcons[i].enabled = (i < lives); // Activează imaginea dacă jucătorul are viața respectivă
         }
     }
+
+    private void UpdateCoinsUI()
+    {
+        coinsText.text = "Coins: " + nrCoin; // actualizare text cu nr monede
+    } 
 }

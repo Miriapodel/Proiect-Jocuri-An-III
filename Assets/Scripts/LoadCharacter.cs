@@ -37,6 +37,9 @@ public class LoadCharacter : MonoBehaviour
 
             // Assignam LifeObjects la caracter
             AssignLifeObjects(clone);
+
+            // Assignam LifeObjects și Text-ul monedelor la caracter
+            //AssignUIComponents(clone);
         }
         else
         {
@@ -89,5 +92,40 @@ public class LoadCharacter : MonoBehaviour
             Debug.LogError("Life images not found in the scene. Please ensure life1, life2, and life3 are present.");
         }
     }
+/*
+    void AssignUIComponents(GameObject character)
+    {
+        // Găsim elementele UI din scenă
+        Image life1 = GameObject.Find("life1").GetComponent<Image>();
+        Image life2 = GameObject.Find("life2").GetComponent<Image>();
+        Image life3 = GameObject.Find("life3").GetComponent<Image>();
+        TextMeshProUGUI coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
+        //TMP_Text coinsText = GameObject.Find("CoinsText").GetComponent<TMP_Text>();
 
+        // Verificam dacă elementele au fost găsite
+        if (life1 != null && life2 != null && life3 != null && coinsText != null)
+        {
+            var characterScript = character.GetComponent<CollisionWithObstacles>();
+
+            if (characterScript != null)
+            {
+                // Asignam iconitele de viata
+                characterScript.lifeIcons = new Image[] { life1, life2, life3 };
+
+                // Asignam textul monedelor
+                characterScript.coinsText = coinsText;
+
+                Debug.Log("LifeIcons and CoinsText assigned to character.");
+            }
+            else
+            {
+                Debug.LogWarning("CharacterScript not found on the instantiated player.");
+            }
+        }
+        else
+        {
+            Debug.LogError("UI components (life1, life2, life3, or CoinsText) not found in the scene. Please ensure all elements are present.");
+        }
+    }
+*/
 }
