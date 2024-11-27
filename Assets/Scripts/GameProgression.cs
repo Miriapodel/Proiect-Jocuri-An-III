@@ -11,9 +11,9 @@ public class GameProgression : MonoBehaviour
     private float minPowerUpChance = 20f;
     private float powerUpDecreaseRate = 0.1f;
 
-    public float initialRoadSpeed = 20f; 
-    public float maxRoadSpeed = 50f;     
-    public float roadSpeedIncreaseRate = 0.1f; 
+    private float initialRoadSpeed = 20f; 
+    private float maxRoadSpeed = 50f;     
+    private float roadSpeedIncreaseRate = 0.1f; 
 
     void Start()
     {
@@ -31,14 +31,14 @@ public class GameProgression : MonoBehaviour
         
             if(MoveRoadPlatform.roadSpeed < maxRoadSpeed)
             {
-                Debug.Log("VITEZA: " + MoveRoadPlatform.roadSpeed);
+                //Debug.Log("VITEZA: " + MoveRoadPlatform.roadSpeed);
                 MoveRoadPlatform.roadSpeed += roadSpeedIncreaseRate;
                 MoveRoadPlatform.roadSpeed = Mathf.Clamp(MoveRoadPlatform.roadSpeed, initialRoadSpeed, maxRoadSpeed);
             }
 
             if (ObstacleSpawner.sansaAparitie < maxObstacleChance)
             {
-                Debug.Log("SANSA APARITIE: " + ObstacleSpawner.sansaAparitie);
+                //Debug.Log("SANSA APARITIE: " + ObstacleSpawner.sansaAparitie);
                 ObstacleSpawner.sansaAparitie += obstacleIncreaseRate;
                 ObstacleSpawner.sansaAparitie = Mathf.Clamp(ObstacleSpawner.sansaAparitie, 0, maxObstacleChance);
             }
@@ -46,7 +46,7 @@ public class GameProgression : MonoBehaviour
           
             if (PowerUpSpawner.sansaAparitie > minPowerUpChance)
             {
-                Debug.Log("SANSA APARITIE PU: " + PowerUpSpawner.sansaAparitie);
+                //Debug.Log("SANSA APARITIE PU: " + PowerUpSpawner.sansaAparitie);
                 PowerUpSpawner.sansaAparitie -= powerUpDecreaseRate;
                 PowerUpSpawner.sansaAparitie = Mathf.Clamp(PowerUpSpawner.sansaAparitie, minPowerUpChance, 100);
             }
