@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +9,13 @@ public class GameManager : MonoBehaviour
     public Quaternion sunRotation = Quaternion.identity; // Default rotation
     public AudioClip currentAudioClip; // Selected audio clip for daytime
     public AudioClip defaultDayAudio; // Default audio clip for Daytime
+
+    // pentru ceata
+    public Color fogColorDay = new Color(0.76f, 0.76f, 0.76f); // Alb-gri pentru zi
+    public Color fogColorDusk = new Color(0.85f, 0.6f, 0.5f);  // Roșiatic pentru apus
+    public Color fogColorNight = new Color(0.1f, 0.1f, 0.15f); // Albastru închis pentru noapte
+
+    public Color currentFogColor; // Culoarea curentă a ceții
 
     private void Awake()
     {
