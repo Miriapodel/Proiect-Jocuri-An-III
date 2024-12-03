@@ -21,7 +21,7 @@ public class SectionTrigger : MonoBehaviour
             // Calculam coordonatele sectiunii curente a drumului
             Vector3 currentSectionPosition = lastRoad.transform.position;
             // Instantiem o noua sectiune de drum la coordonatele sectiunii curente
-            Instantiate(roadSection, new Vector3(currentSectionPosition.x, currentSectionPosition.y, currentSectionPosition.z + 100), Quaternion.identity);
+            Instantiate(roadSection, new Vector3(currentSectionPosition.x, currentSectionPosition.y, currentSectionPosition.z + 99.9f), Quaternion.identity);
 
             hasSpawned = true; // Seteaza flag-ul ca am spawnat sectiunea
         }
