@@ -20,7 +20,6 @@ public class CoinSpawner : MonoBehaviour
             if (child.CompareTag("CoinSpawn"))  // Asigură-te că aceste obiecte au tag-ul CoinSpawnPoint
             {
                 coinSpawnPoints.Add(child);
-                Debug.Log("Punct de spawn găsit: " + child.name);
             }
         }
 
@@ -34,7 +33,6 @@ public class CoinSpawner : MonoBehaviour
         {
             // Instanțiază moneda la fiecare punct de spawn
             Instantiate(coinPrefab, spawnPoint.position, Quaternion.identity, transform);
-            Debug.Log("Monedă generată la: " + spawnPoint.position);
         }
     }
 }

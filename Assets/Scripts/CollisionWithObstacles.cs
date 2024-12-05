@@ -78,7 +78,7 @@ public class CollisionWithObstacles : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.CompareTag("Obstacle") && !recentlyDamaged && hasDisableObstaclesPowerUp)
+        if ((collision.gameObject.CompareTag("Obstacle") || collision.CompareTag("frontSide")) && !recentlyDamaged && hasDisableObstaclesPowerUp)
         {
             // Dezactivează obstacolul părinte
             Transform parent = collision.transform.parent;
@@ -99,6 +99,16 @@ public class CollisionWithObstacles : MonoBehaviour
         if (collision.CompareTag("rightSide"))
         {
             playerMovement.ChangeLane(1);
+        }
+        if(collision.CompareTag("frontSide") && !recentlyDamaged && !hasDisableObstaclesPowerUp)
+        {
+            lives = 0;
+            UpdateLivesUI();
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene("GameOver");
+
+            // Pornim efectul de camera shake mai intens
+            cameraShake.TriggerShake();
         }
         if (collision.CompareTag("Bomb"))
         {
@@ -124,8 +134,6 @@ public class CollisionWithObstacles : MonoBehaviour
             totalCoins += 1; // Adaugă moneda colectată
             PlayerPrefs.SetInt("TotalCoins", totalCoins); // Salvează în PlayerPrefs
             PlayerPrefs.Save(); // Salvează imediat pe disc
-
-            Debug.Log("Nr coins: " + nrCoin);
 
             // Actualizează UI-ul monedelor
             UpdateCoinsUI();

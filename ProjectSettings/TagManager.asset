@@ -20,6 +20,8 @@ TagManager:
   - GameOverCamera
   - Road
   - displayCoins
+  - Metal bar
+  - frontSide
   layers:
   - Default
   - TransparentFX
