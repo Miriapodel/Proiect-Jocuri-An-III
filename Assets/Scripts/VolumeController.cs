@@ -12,6 +12,13 @@ public class VolumeController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         audioSource = Camera.main.GetComponent<AudioSource>();
 
+        // Disable keyboard navigation on the slider
+        if (volumeSlider != null)
+        {
+            var noNavigation = new Navigation { mode = Navigation.Mode.None };
+            volumeSlider.navigation = noNavigation;
+        }
+
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);
