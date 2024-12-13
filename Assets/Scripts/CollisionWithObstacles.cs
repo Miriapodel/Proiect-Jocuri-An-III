@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -18,8 +19,9 @@ public class CollisionWithObstacles : MonoBehaviour
     private Coroutine powerUpCoroutine; // Referință la corutina activă
     public float powerUpDuration = 5f; // Durata efectului power-up-ului
     private int nrCoin = 0;
+    private float roundStartTime; // Timpul de start al rundei
+    private float roundScore; // Scorul rundei
 
-    
     [SerializeField]
     private TextMeshProUGUI coinsText; 
 
@@ -36,6 +38,14 @@ public class CollisionWithObstacles : MonoBehaviour
         // Încarcă numărul total de monede colectate
         nrCoin = PlayerPrefs.GetInt("TotalCoins", 0);
         UpdateCoinsUI();
+
+        roundStartTime = Time.time; // Marchează timpul de start al rundei
+    }
+
+    void Update()
+    {
+        // Calculează scorul curent bazat pe timpul scurs
+        roundScore = (Time.time - roundStartTime) * 1000f; // Milisecunde
     }
 
     void OnTriggerEnter(Collider collision)
@@ -53,7 +63,7 @@ public class CollisionWithObstacles : MonoBehaviour
                 lives = 0;
                 UpdateLivesUI();
                 Debug.Log("Game Over!");
-                SceneManager.LoadScene("GameOver");
+                EndGame();
 
                 // Pornim efectul de camera shake mai intens
                 cameraShake.TriggerShake();
@@ -74,7 +84,7 @@ public class CollisionWithObstacles : MonoBehaviour
                 if (lives <= 0)
                 {
                     Debug.Log("Game Over!");
-                    SceneManager.LoadScene("GameOver");
+                    EndGame();
                 }
             }
         }
@@ -105,7 +115,7 @@ public class CollisionWithObstacles : MonoBehaviour
             lives = 0;
             UpdateLivesUI();
             Debug.Log("Game Over!");
-            SceneManager.LoadScene("GameOver");
+            EndGame();
 
             // Pornim efectul de camera shake mai intens
             cameraShake.TriggerShake();
@@ -138,6 +148,14 @@ public class CollisionWithObstacles : MonoBehaviour
             // Actualizează UI-ul monedelor
             UpdateCoinsUI();
         }
+    }
+
+    void EndGame()
+    {
+        // Salvează scorul actual
+        PlayerPrefs.SetFloat("LastRoundScore", roundScore);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("GameOver");
     }
 
     private IEnumerator DisablePowerUpAfterTime()
