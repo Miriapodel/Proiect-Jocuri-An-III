@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8963258844079842439
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.0629442, y: 3.5443668, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7148160763666819946}
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6035042678624840361}
   - component: {fileID: 3384815625873394926}
   - component: {fileID: 526801903875991016}
+  - component: {fileID: 5793791083404351707}
   m_Layer: 0
   m_Name: fog
   m_TagString: Untagged
@@ -59,10 +60,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4376534913999999668}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -16.46}
+  m_LocalScale: {x: 4.9609213, y: 1.6536404, z: 1.6536404}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8963258844079842439}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -94,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5c0e6fac2968b4418b1c11a7a5d7a3e, type: 2}
+  - {fileID: 2100000, guid: 88224bb6a4691e2438382daa61e7f6e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,3 +139,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5793791083404351707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376534913999999668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e975dcdd2c8ecd64890973ef35aec6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
