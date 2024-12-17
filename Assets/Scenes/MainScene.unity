@@ -96,7 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 25c33d95a4521bb468cc06b19a129ca5,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1529,7 +1530,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1590,7 +1591,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 90
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2069,6 +2070,74 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1345284462}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1422165900
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1227606878304052852, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_Name
+      value: Advance Fog
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 89.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963258844079842439, guid: 143d5fceb9c140c42a858c255681cd67,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 143d5fceb9c140c42a858c255681cd67, type: 3}
 --- !u!1 &1454315539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,3 +2542,4 @@ SceneRoots:
   - {fileID: 234213393}
   - {fileID: 762125935}
   - {fileID: 1454315541}
+  - {fileID: 1422165900}
