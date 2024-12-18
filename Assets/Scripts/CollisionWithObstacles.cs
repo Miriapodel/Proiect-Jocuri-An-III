@@ -18,6 +18,8 @@ public class CollisionWithObstacles : MonoBehaviour
     private bool hasDisableObstaclesPowerUp = false; // Flag pentru activarea puterii
     private Coroutine powerUpCoroutine; // Referință la corutina activă
     public float powerUpDuration = 5f; // Durata efectului power-up-ului
+    [SerializeField]
+    private Image bombImage;   // imaginea pt puterea cu bomba
     private int nrCoin = 0;
     private float roundStartTime; // Timpul de start al rundei
     private float roundScore; // Scorul rundei
@@ -40,6 +42,14 @@ public class CollisionWithObstacles : MonoBehaviour
         UpdateCoinsUI();
 
         roundStartTime = Time.time; // Marchează timpul de start al rundei
+
+        bombImage = GameObject.FindGameObjectsWithTag("bombImage")[0].GetComponent<Image>();
+
+
+        if (bombImage != null)
+        {
+            bombImage.gameObject.SetActive(false); // Ascunde imaginea la început
+        }
     }
 
     void Update()
@@ -160,11 +170,20 @@ public class CollisionWithObstacles : MonoBehaviour
 
     private IEnumerator DisablePowerUpAfterTime()
     {
+        if (bombImage != null)
+        {
+            bombImage.gameObject.SetActive(true);       // activeaza imaginea
+        }
         Debug.Log("Efectul power-up-ului activat!");
         yield return new WaitForSeconds(powerUpDuration); // Așteaptă durata efectului
         hasDisableObstaclesPowerUp = false; // Dezactivează efectul
         powerUpCoroutine = null; // Resetează referința corutinei
         Debug.Log("Efectul power-up-ului a expirat!");
+        //ascunde imaginea de pe ecran
+        if (bombImage != null)
+        {
+            bombImage.gameObject.SetActive(false);      // dezactiveaza imaginea
+        }
     }
 
     IEnumerator HandleDamage()
@@ -188,3 +207,4 @@ public class CollisionWithObstacles : MonoBehaviour
         coinsText.text = "Coins: " + nrCoin; // actualizare text cu nr monede
     } 
 }
+

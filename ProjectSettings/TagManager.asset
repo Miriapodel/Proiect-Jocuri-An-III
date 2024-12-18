@@ -22,6 +22,7 @@ TagManager:
   - displayCoins
   - Metal bar
   - frontSide
+  - bombImage
   layers:
   - Default
   - TransparentFX
