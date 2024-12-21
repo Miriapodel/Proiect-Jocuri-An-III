@@ -135,7 +135,8 @@ public class CharacterSelection : MonoBehaviour
             buyButtons[selectedCharacter].interactable = true;
             buyButtons[selectedCharacter].GetComponent<Image>().color = availableColor;
         }
-    }
+        SelectCharacter();
+	}
 
     public void PreviousCharacter()
     {
