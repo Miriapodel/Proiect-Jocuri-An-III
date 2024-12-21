@@ -20,6 +20,12 @@ public class CollisionWithObstacles : MonoBehaviour
     public float powerUpDuration = 5f; // Durata efectului power-up-ului
     [SerializeField]
     private Image bombImage;   // imaginea pt puterea cu bomba
+    private bool doubleCoinActive = false; // Flag pentru efectul de dublare
+    private Coroutine doubleCoinCoroutine; // Referință la corutina activă pentru dublare
+    public float doubleCoinDuration = 5f; // Durata efectului de dublare
+    [SerializeField]
+    private Image coinImage; // Imagine pentru power-up-ul de dublare
+
     private int nrCoin = 0;
     private float roundStartTime; // Timpul de start al rundei
     private float roundScore; // Scorul rundei
@@ -48,8 +54,16 @@ public class CollisionWithObstacles : MonoBehaviour
 
         if (bombImage != null)
         {
-            bombImage.gameObject.SetActive(false); // Ascunde imaginea la început
+            bombImage.gameObject.SetActive(false); // ascunde imaginea la început
         }
+
+        coinImage = GameObject.FindGameObjectsWithTag("coinImage")[0].GetComponent<Image>();
+
+        if (coinImage != null)
+        {
+            coinImage.gameObject.SetActive(false); // ascunde imaginea la început
+        }
+
     }
 
     void Update()
@@ -144,20 +158,54 @@ public class CollisionWithObstacles : MonoBehaviour
             }
         }
 
+        // if (collision.CompareTag("Coin"))
+        // {
+        //     collision.gameObject.SetActive(false);
+        //     nrCoin += 1;
+
+        //     // Actualizează numărul total de monede colectate
+        //     int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0); // Citește valoarea curentă
+        //     totalCoins += 1; // Adaugă moneda colectată
+        //     PlayerPrefs.SetInt("TotalCoins", totalCoins); // Salvează în PlayerPrefs
+        //     PlayerPrefs.Save(); // Salvează imediat pe disc
+
+        //     // Actualizează UI-ul monedelor
+        //     UpdateCoinsUI();
+        // }
+
+
         if (collision.CompareTag("Coin"))
         {
             collision.gameObject.SetActive(false);
-            nrCoin += 1;
+            int coinsToAdd = doubleCoinActive ? 2 : 1; // Dacă efectul este activ, dublează moneda
+
+            nrCoin += coinsToAdd;
 
             // Actualizează numărul total de monede colectate
             int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0); // Citește valoarea curentă
-            totalCoins += 1; // Adaugă moneda colectată
+            totalCoins += coinsToAdd; // Adaugă monedele colectate
             PlayerPrefs.SetInt("TotalCoins", totalCoins); // Salvează în PlayerPrefs
             PlayerPrefs.Save(); // Salvează imediat pe disc
 
             // Actualizează UI-ul monedelor
             UpdateCoinsUI();
         }
+
+
+        if (collision.CompareTag("arrow"))
+        {
+            if (!doubleCoinActive)                                          // Verifică dacă efectul nu este deja activ
+            {
+                collision.gameObject.SetActive(false);                      // Dezactivează săgeata
+                doubleCoinActive = true;                                    // Activează efectul power-up-ului
+                doubleCoinCoroutine = StartCoroutine(DoubleCoinPowerUp());  // Pornește durata power-up-ului
+            }
+            else
+            {
+                Debug.Log("Power-up-ul de dublare este deja activ!");
+            }
+        }
+
     }
 
     void EndGame()
@@ -185,6 +233,24 @@ public class CollisionWithObstacles : MonoBehaviour
             bombImage.gameObject.SetActive(false);      // dezactiveaza imaginea
         }
     }
+
+    private IEnumerator DoubleCoinPowerUp()
+    {
+        if (coinImage != null)
+        {
+            coinImage.gameObject.SetActive(true);               // Activează imaginea
+        }
+        Debug.Log("Efectul de dublare activat!");
+        yield return new WaitForSeconds(doubleCoinDuration);    // Așteaptă durata efectului
+        doubleCoinActive = false;                               // Dezactivează efectul
+        doubleCoinCoroutine = null;                             // Resetează referința corutinei
+        Debug.Log("Efectul de dublare a expirat!");
+        if (coinImage != null)
+        {
+            coinImage.gameObject.SetActive(false);              // Dezactivează imaginea
+        }
+    }
+
 
     IEnumerator HandleDamage()
     {
