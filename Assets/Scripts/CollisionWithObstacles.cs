@@ -18,6 +18,14 @@ public class CollisionWithObstacles : MonoBehaviour
     private bool hasDisableObstaclesPowerUp = false; // Flag pentru activarea puterii
     private Coroutine powerUpCoroutine; // Referință la corutina activă
     public float powerUpDuration = 5f; // Durata efectului power-up-ului
+    [SerializeField]
+    private Image bombImage;                    // imaginea pt puterea cu bomba
+    private bool doubleCoinActive = false;      // flag pt efectul de dublare
+    private Coroutine doubleCoinCoroutine;      // referinta la corutina activa pentru dublare monede
+    public float doubleCoinDuration = 5f;       // durata efectului de dublare
+    [SerializeField]
+    private Image coinImage;                    // img pt power-up-ul de dublare
+
     private int nrCoin = 0;
     private float roundStartTime; // Timpul de start al rundei
     private float roundScore; // Scorul rundei
@@ -35,11 +43,27 @@ public class CollisionWithObstacles : MonoBehaviour
         // Initializează UI-ul de vieți
         UpdateLivesUI();
 
-        // Încarcă numărul total de monede colectate
+        // incarca nr total de monede colectate
         nrCoin = PlayerPrefs.GetInt("TotalCoins", 0);
         UpdateCoinsUI();
 
         roundStartTime = Time.time; // Marchează timpul de start al rundei
+
+        bombImage = GameObject.FindGameObjectsWithTag("bombImage")[0].GetComponent<Image>();
+
+
+        if (bombImage != null)
+        {
+            bombImage.gameObject.SetActive(false);      // ascunde imaginea la început
+        }
+
+        coinImage = GameObject.FindGameObjectsWithTag("coinImage")[0].GetComponent<Image>();
+
+        if (coinImage != null)
+        {
+            coinImage.gameObject.SetActive(false);      // ascunde imaginea la început
+        }
+
     }
 
     void Update()
@@ -134,20 +158,49 @@ public class CollisionWithObstacles : MonoBehaviour
             }
         }
 
+
         if (collision.CompareTag("Coin"))
         {
             collision.gameObject.SetActive(false);
-            nrCoin += 1;
 
-            // Actualizează numărul total de monede colectate
-            int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0); // Citește valoarea curentă
-            totalCoins += 1; // Adaugă moneda colectată
-            PlayerPrefs.SetInt("TotalCoins", totalCoins); // Salvează în PlayerPrefs
-            PlayerPrefs.Save(); // Salvează imediat pe disc
+            // daca efectul este activ, dubleaza nr de monede
+            int coinsToAdd;
+            if (doubleCoinActive)
+            {
+                coinsToAdd = 2;            
+            }
+            else
+            {
+                coinsToAdd = 1;             
+            }
 
-            // Actualizează UI-ul monedelor
+            nrCoin += coinsToAdd;
+
+            // actualizeaza nr total de monede colectate
+            int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);       // citeste valoarea curenta
+            totalCoins += coinsToAdd;                                   // adauga monedele colectate
+            PlayerPrefs.SetInt("TotalCoins", totalCoins);               // aalveaza în player prefs
+            PlayerPrefs.Save();                                         // salveaza pe disc
+
+            // actualizeaza UI-ul monedelor
             UpdateCoinsUI();
         }
+
+
+        if (collision.CompareTag("arrow"))
+        {
+            if (!doubleCoinActive)                                          // verif daca efectul nu este deja activ
+            {
+                collision.gameObject.SetActive(false);                      // dezactiveaz puterea
+                doubleCoinActive = true;                                    // activeaza efectul power-up-ului
+                doubleCoinCoroutine = StartCoroutine(DoubleCoinPowerUp());  // poerneste durata power-up-ului
+            }
+            else
+            {
+                Debug.Log("Power-up-ul de dublare este deja activ!");
+            }
+        }
+
     }
 
     void EndGame()
@@ -160,12 +213,40 @@ public class CollisionWithObstacles : MonoBehaviour
 
     private IEnumerator DisablePowerUpAfterTime()
     {
+        if (bombImage != null)
+        {
+            bombImage.gameObject.SetActive(true);           // activeaza imaginea
+        }
         Debug.Log("Efectul power-up-ului activat!");
-        yield return new WaitForSeconds(powerUpDuration); // Așteaptă durata efectului
-        hasDisableObstaclesPowerUp = false; // Dezactivează efectul
-        powerUpCoroutine = null; // Resetează referința corutinei
+        yield return new WaitForSeconds(powerUpDuration);   // asteapta durata efectului
+        hasDisableObstaclesPowerUp = false;                 // dezactiveaza efectul
+        powerUpCoroutine = null;                            // reseteaza referinta corutinei
         Debug.Log("Efectul power-up-ului a expirat!");
+
+        //ascunde imaginea de pe ecran
+        if (bombImage != null)
+        {
+            bombImage.gameObject.SetActive(false);      // dezactiveaza imaginea
+        }
     }
+
+    private IEnumerator DoubleCoinPowerUp()
+    {
+        if (coinImage != null)
+        {
+            coinImage.gameObject.SetActive(true);               // activ imaginea
+        }
+        Debug.Log("Efectul de dublare activat!");
+        yield return new WaitForSeconds(doubleCoinDuration);    
+        doubleCoinActive = false;                               
+        doubleCoinCoroutine = null;                            
+        Debug.Log("Efectul de dublare a expirat!");
+        if (coinImage != null)
+        {
+            coinImage.gameObject.SetActive(false);              // dezactiv imaginea
+        }
+    }
+
 
     IEnumerator HandleDamage()
     {
@@ -188,3 +269,4 @@ public class CollisionWithObstacles : MonoBehaviour
         coinsText.text = "Coins: " + nrCoin; // actualizare text cu nr monede
     } 
 }
+
