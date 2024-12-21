@@ -81,7 +81,7 @@ public class CollisionWithObstacles : MonoBehaviour
             Vector3 directionToObstacle = (collision.transform.position - transform.position).normalized;
             float dotProduct = Vector3.Dot(transform.forward, directionToObstacle);
 
-            if (dotProduct > 0.99f) // Aproximativ frontal (1.0 ar fi direct frontal)
+            if (dotProduct > 0.925f) // Aproximativ frontal (1.0 ar fi direct frontal)
             {
                 // Coliziune frontală - pierde toate viețile
                 lives = 0;
