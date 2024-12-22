@@ -31,7 +31,9 @@ public class CollisionWithObstacles : MonoBehaviour
     private float roundScore; // Scorul rundei
 
     [SerializeField]
-    private TextMeshProUGUI coinsText; 
+    private TextMeshProUGUI coinsText;
+    [SerializeField]
+    private TextMeshProUGUI textScore;
 
 
     void Start()
@@ -70,6 +72,9 @@ public class CollisionWithObstacles : MonoBehaviour
     {
         // Calculează scorul curent bazat pe timpul scurs
         roundScore = (Time.time - roundStartTime) * 1000f; // Milisecunde
+
+        // Actualizează textul scorului
+        textScore.text = "Score: " + Mathf.FloorToInt(roundScore).ToString();
     }
 
     void OnTriggerEnter(Collider collision)
