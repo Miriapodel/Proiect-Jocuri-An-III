@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     private float originalColliderHeight; // Inaltimea originala a collider-ului
     private Vector3 originalColliderCenter; // Pozitia originala a centrului collider-ului
 
+    // pt bug jump 
+    private float jumpCooldown = 0.8f; // Timpul de asteptare intre sarituri (1 secunda)
+    private float lastJumpTime = -1f; // Timpul ultimei sarituri (-1 pentru prima saritura)
     void Start()
     {
         // Pozitia initiala
@@ -58,10 +61,11 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Saritura (W)
-            if (Input.GetKeyDown(KeyCode.W) && !isJumping)
+            if (Input.GetKeyDown(KeyCode.W) && !isJumping && Time.time >= lastJumpTime + jumpCooldown)
             {
-                animator.SetTrigger("JumpWhileRunning"); // Declanseaza animatia de saritura
-                StartCoroutine(Jump()); // Incepem saritura
+                animator.SetTrigger("JumpWhileRunning");
+                StartCoroutine(Jump());
+                lastJumpTime = Time.time; // Salvam timpul ultimei sarituri
             }
 
             // Slide (S)
@@ -77,17 +81,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void ChangeLane(int direction)
-{
-    // direction poate fi -1 pentru stânga sau 1 pentru dreapta
-    int newLane = currentLane + direction;
-
-    // Verificăm limitele benzii (0 = stânga, 2 = dreapta)
-    if (newLane >= 0 && newLane <= 2)
     {
-        currentLane = newLane;
-        MoveToLane();
+        // direction poate fi -1 pentru stânga sau 1 pentru dreapta
+        int newLane = currentLane + direction;
+
+        // Verificăm limitele benzii (0 = stânga, 2 = dreapta)
+        if (newLane >= 0 && newLane <= 2)
+        {
+            currentLane = newLane;
+            MoveToLane();
+        }
     }
-}
 
 
     // Functie pentru schimbarea benzii
@@ -137,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        lastJumpTime = Time.time; // Actualizam timpul ultimei sarituri
         isJumping = false; // Resetam flag-ul de saritura
         isMoving = false;  // Resetam flag-ul de miscare
     }
