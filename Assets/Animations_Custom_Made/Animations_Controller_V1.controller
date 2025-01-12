@@ -31,7 +31,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: RollForwardAfterJump
   m_Speed: 2
-  m_CycleOffset: 0
+  m_CycleOffset: 1
   m_Transitions:
   - {fileID: -8295098639918196201}
   m_StateMachineBehaviours: []
@@ -446,9 +446,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.27059194
+  m_TransitionDuration: 0.19022864
   m_TransitionOffset: 0
-  m_ExitTime: 0.00000010039444
+  m_ExitTime: 0.00000010040691
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
