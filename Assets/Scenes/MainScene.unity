@@ -515,6 +515,7 @@ RectTransform:
   - {fileID: 760800109}
   - {fileID: 34884426}
   - {fileID: 1467579254}
+  - {fileID: 423147186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -842,6 +843,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404995551}
   m_CullTransparentMesh: 1
+--- !u!1 &423147185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423147186}
+  - component: {fileID: 423147188}
+  - component: {fileID: 423147187}
+  m_Layer: 5
+  m_Name: BestScoreIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &423147186
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423147185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 239239432}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 44, y: -96.5}
+  m_SizeDelta: {x: 75, y: 75}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &423147187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423147185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0296f9238f85899459c7674c0797349d, type: 2}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &423147188
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423147185}
+  m_CullTransparentMesh: 1
 --- !u!1 &473206457
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +1040,11 @@ PrefabInstance:
       objectReference: {fileID: 1467579255}
     - target: {fileID: 7637708338340717806, guid: 1804c461b0319804a8dc6dec70731661,
         type: 3}
+      propertyPath: bestScoreIcon
+      value: 
+      objectReference: {fileID: 423147187}
+    - target: {fileID: 7637708338340717806, guid: 1804c461b0319804a8dc6dec70731661,
+        type: 3}
       propertyPath: lifeIcons.Array.data[0]
       value: 
       objectReference: {fileID: 404995553}
@@ -1067,6 +1148,11 @@ PrefabInstance:
       propertyPath: textScore
       value: 
       objectReference: {fileID: 1467579255}
+    - target: {fileID: 7200396486060525546, guid: 1455782cda4e7854baa3acfc0def61c1,
+        type: 3}
+      propertyPath: bestScoreIcon
+      value: 
+      objectReference: {fileID: 423147187}
     - target: {fileID: 7200396486060525546, guid: 1455782cda4e7854baa3acfc0def61c1,
         type: 3}
       propertyPath: lifeIcons.Array.data[0]
@@ -2144,6 +2230,11 @@ PrefabInstance:
       objectReference: {fileID: 1467579255}
     - target: {fileID: 2832343061690012544, guid: 8e84e1d844396504386e32db050f24e7,
         type: 3}
+      propertyPath: bestScoreIcon
+      value: 
+      objectReference: {fileID: 423147187}
+    - target: {fileID: 2832343061690012544, guid: 8e84e1d844396504386e32db050f24e7,
+        type: 3}
       propertyPath: lifeIcons.Array.data[0]
       value: 
       objectReference: {fileID: 404995553}
@@ -2500,6 +2591,11 @@ PrefabInstance:
       objectReference: {fileID: 1467579255}
     - target: {fileID: 3952809096889886136, guid: 97575049a1ad65142a6f100057e6ccb7,
         type: 3}
+      propertyPath: bestScoreIcon
+      value: 
+      objectReference: {fileID: 423147187}
+    - target: {fileID: 3952809096889886136, guid: 97575049a1ad65142a6f100057e6ccb7,
+        type: 3}
       propertyPath: lifeIcons.Array.data[0]
       value: 
       objectReference: {fileID: 404995553}
@@ -2623,6 +2719,11 @@ PrefabInstance:
       propertyPath: textScore
       value: 
       objectReference: {fileID: 1467579255}
+    - target: {fileID: 333955645892134655, guid: b8ef5167b141e994ba60ad9e4523c49b,
+        type: 3}
+      propertyPath: bestScoreIcon
+      value: 
+      objectReference: {fileID: 423147187}
     - target: {fileID: 333955645892134655, guid: b8ef5167b141e994ba60ad9e4523c49b,
         type: 3}
       propertyPath: lifeIcons.Array.data[0]

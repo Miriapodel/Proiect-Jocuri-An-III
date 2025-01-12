@@ -35,9 +35,15 @@ public class CollisionWithObstacles : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textScore;
 
+    [SerializeField]
+    private Image bestScoreIcon;
+    private bool newBestScore;
+
 
     void Start()
     {
+        newBestScore = false;
+
         // Obține referința la CameraShake
         cameraShake = Camera.main.GetComponent<CameraShake>();
         playerMovement = GetComponent<PlayerMovement>();
@@ -73,8 +79,28 @@ public class CollisionWithObstacles : MonoBehaviour
         // Calculează scorul curent bazat pe timpul scurs
         roundScore = (Time.time - roundStartTime) * 1000f; // Milisecunde
 
+
+        if ( PlayerPrefs.HasKey("LeaderboardScore0"))
+        {
+            float currentHighestScore = PlayerPrefs.GetFloat("LeaderboardScore0");
+
+            if (roundScore > currentHighestScore && !newBestScore)
+            {
+                newBestScore=true;
+                bestScoreIcon.gameObject.SetActive(true);
+                StartCoroutine(DisableBestScoreIcon());
+            }
+
+        }
+
         // Actualizează textul scorului
         textScore.text = "Score: " + Mathf.FloorToInt(roundScore).ToString();
+    }
+
+    private IEnumerator DisableBestScoreIcon()
+    {
+        yield return new WaitForSeconds(5);
+        bestScoreIcon.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider collision)
