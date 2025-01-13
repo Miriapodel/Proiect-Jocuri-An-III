@@ -17,7 +17,24 @@ public class GameManager : MonoBehaviour
 
     public Color currentFogColor; // Culoarea curentă a ceții
 
-    private void Awake()
+	void Start()
+	{
+		InitializePlayerPrefs();
+		// La primul run resetam PlayerPrefs
+	}
+
+	void InitializePlayerPrefs()
+	{
+		if (!PlayerPrefs.HasKey("FirstLaunch"))
+		{
+			PlayerPrefs.DeleteAll();
+			PlayerPrefs.SetInt("FirstLaunch", 1);
+			PlayerPrefs.SetInt("TotalCoins", 10);
+			PlayerPrefs.Save();
+		}
+	}
+
+	private void Awake()
     {
         if (Instance == null)
         {
