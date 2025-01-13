@@ -18,24 +18,39 @@ public class CharacterSelection : MonoBehaviour
 
     private int playerCoins; // Banii jucătorului
 
-    private void Start()
-    {
-        // Încărcăm banii salvați sau începem cu 0 dacă e prima dată
-        playerCoins = PlayerPrefs.GetInt("TotalCoins", 0);
-        UpdateCoinsUI();
+	private void Start()
+	{
+		InitializePlayerPrefs();
 
-        // Inițializăm starea butoanelor
-        UpdateButtonStates();
+		playerCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+		UpdateCoinsUI();
 
-        // Activăm doar primul caracter la start
-        for (int i = 0; i < characters.Length; i++)
-        {
-            characters[i].SetActive(i == selectedCharacter);
-            buyButtons[i].gameObject.SetActive(i == selectedCharacter);
-        }
-    }
+		UpdateButtonStates();
 
-    private void UpdateCoinsUI()
+		selectedCharacter = PlayerPrefs.GetInt("selectedCharacter", 0);
+		for (int i = 0; i < characters.Length; i++)
+		{
+			characters[i].SetActive(i == selectedCharacter);
+			buyButtons[i].gameObject.SetActive(i == selectedCharacter);
+		}
+	}
+
+	void InitializePlayerPrefs()
+	{
+		string currentVersion = Application.version;
+		string savedVersion = PlayerPrefs.GetString("AppVersion", "");
+
+		if (savedVersion != currentVersion)
+		{
+			PlayerPrefs.DeleteAll();
+			PlayerPrefs.SetString("AppVersion", currentVersion);
+			PlayerPrefs.SetInt("Character_0", 1);
+			PlayerPrefs.SetInt("selectedCharacter", 0);
+			PlayerPrefs.Save();
+		}
+	}
+
+	private void UpdateCoinsUI()
     {
         coinText.text = "Coins: " + playerCoins.ToString();
     }
