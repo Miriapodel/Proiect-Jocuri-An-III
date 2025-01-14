@@ -17,7 +17,7 @@ public class CoinSpawner : MonoBehaviour
         // Adaugă toate obiectele Empty GameObjects din copii acestui obiect care sunt puncte de spawn
         foreach (Transform child in transform)
         {
-            if (child.CompareTag("CoinSpawn"))  // Asigură-te că aceste obiecte au tag-ul CoinSpawnPoint
+            if (child.CompareTag("CoinSpawn"))
             {
                 coinSpawnPoints.Add(child);
             }
